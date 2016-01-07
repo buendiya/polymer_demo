@@ -1,0 +1,31 @@
+<link rel="import" href="../../../bower_components/polymer/polymer.html">
+
+<dom-module id="custom-event-demo">
+
+  <template>
+    <button on-click="handleClick">Kick Me</button>
+  </template>
+
+  <script>
+
+    Polymer({
+
+      is: 'custom-event-demo',
+
+      handleClick: function(e, detail) {
+        this.fire('kick', {kicked: true});
+      },
+
+      listeners: {
+        'kick': 'handleKick'
+      },
+
+      handleKick: function(e) {
+        console.log('kick event: ', e);
+      }
+    });
+
+  </script>
+
+</dom-module>
+

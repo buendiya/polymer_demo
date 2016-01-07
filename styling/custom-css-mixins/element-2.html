@@ -1,0 +1,23 @@
+<link rel="import" href="../../../bower_components/polymer/polymer.html">
+<link rel="import" href="element-1.html">
+
+<dom-module id="element-2">
+    <style>
+        :host {
+/*            display: flex;
+            flex-direction: row;
+*/            @apply(--element-2);
+        }
+    </style>
+
+    <template>
+        <element-1 id='element1'></element-1>
+    </template>
+
+    <script>
+    Element2 = Polymer({
+        is: 'element-2',
+    });
+</script>
+</dom-module>
+

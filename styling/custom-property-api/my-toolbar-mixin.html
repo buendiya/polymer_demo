@@ -1,0 +1,29 @@
+<link rel="import" href="../../../bower_components/polymer/polymer.html">
+<dom-module id="my-toolbar-mixin">
+    <template>
+        <style>
+        :host {
+            padding: 4px;
+            background-color: gray;
+            /* apply a mixin */
+            @apply(--my-toolbar-theme);
+        }
+        
+        .title {
+            @apply(--my-toolbar-title-theme);
+        }
+        </style>
+        <span class="title">{{title}}</span>
+    </template>
+    <script>
+    Polymer({
+        is: 'my-toolbar-mixin',
+        properties: {
+            title: {
+                type: String,
+                value: 'title'
+            }
+        },
+    });
+    </script>
+</dom-module>

@@ -1,0 +1,22 @@
+<link rel="import" href="../../../bower_components/polymer/polymer.html">
+<link rel="import" href="my-toolbar.html">
+
+<dom-module id="element-2">
+    <style>
+        :host {
+            --my-toolbar-title-color: red;
+            @apply(--element-2);
+        }
+    </style>
+
+    <template>
+        <my-toolbar></my-toolbar>
+    </template>
+
+    <script>
+    Element2 = Polymer({
+        is: 'element-2',
+    });
+</script>
+</dom-module>
+

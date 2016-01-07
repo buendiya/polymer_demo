@@ -11,11 +11,18 @@
     Polymer({
 
       is: 'custom-event-demo',
-
-      handleClick: function(e, detail) {
-        this.fire('kick', {kicked: true});
+      properties: {
+        KICK: {
+          type: String,
+          value: 'KICK'
+        }
       },
 
+      handleClick: function(e, detail) {
+        this.fire(KICK, {kicked: true});
+      },
+
+      // listeners key can not be variable
       listeners: {
         'kick': 'handleKick'
       },

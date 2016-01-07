@@ -1,0 +1,31 @@
+<link rel="import" href="../../../bower_components/polymer/polymer.html">
+<link rel="import" href="my-toolbar.html">
+<link rel="import" href="my-toolbar-mixin.html">
+<dom-module id="element-2">
+    <template>
+        <style>
+        :host {
+            --my-toolbar-title-color: red;
+            --my-toolbar-theme: {
+                background-color: red;
+                border-radius: 4px;
+                border: 1px solid gray;
+            };
+        }
+        </style>
+        <my-toolbar title='my toolbar'></my-toolbar>
+        <my-toolbar-mixin title='my toolbar mixin'></my-toolbar-mixin>
+        <button on-tap="changeTheme">Change theme</button>
+    </template>
+    <script>
+    Polymer({
+        is: 'element-2',
+        changeTheme: function() {
+            this.customStyle['--my-toolbar-title-color'] = 'blue';
+            // can not using api to change mixin css
+            // this.customStyle['--my-toolbar-theme'] = JSON.stringify({'background-color': 'blue'});
+            this.updateStyles();
+        }
+    });
+    </script>
+</dom-module>

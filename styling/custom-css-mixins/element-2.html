@@ -4,6 +4,7 @@
 <dom-module id="element-2">
     <style>
         :host {
+            /*--element-1-flex-direction: column;*/
 /*            display: flex;
             flex-direction: row;
 */            @apply(--element-2);
@@ -12,11 +13,19 @@
 
     <template>
         <element-1 id='element1'></element-1>
+        <button on-tap='handleTap'>change flex direction</button>
     </template>
 
     <script>
     Element2 = Polymer({
         is: 'element-2',
+        handleTap: function() {
+            this.changeFlexDirection('column');
+        },
+        changeFlexDirection: function(direction) {
+            this.customStyle['--element-1-flex-direction'] = direction;
+            this.updateStyles();
+        }
     });
 </script>
 </dom-module>

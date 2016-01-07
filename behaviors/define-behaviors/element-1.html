@@ -1,0 +1,23 @@
+<link rel="import" href="../../../bower_components/polymer/polymer.html">
+<link rel="import" href="highlight-behavior.html">
+<dom-module id="element-1">
+    <template>
+        <button>Kick Me</button>
+    </template>
+    <script>
+    Polymer({
+
+        is: 'element-1',
+        behaviors: [HighlightBehavior],
+        
+        // will inherit all HighlightBehavior's behaviors
+        properties: {
+            test: {
+                type: String,
+                value: 'test'
+            }
+        }
+
+    });
+    </script>
+</dom-module>

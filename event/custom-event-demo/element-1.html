@@ -1,6 +1,6 @@
 <link rel="import" href="../../../bower_components/polymer/polymer.html">
 
-<dom-module id="custom-event-demo">
+<dom-module id="element-1">
 
   <template>
     <button on-click="handleClick">Kick Me</button>
@@ -10,11 +10,11 @@
 
     Polymer({
 
-      is: 'custom-event-demo',
+      is: 'element-1',
       properties: {
-        KICK: {
+        kick: {
           type: String,
-          value: 'KICK'
+          value: 'kick'
         }
       },
 

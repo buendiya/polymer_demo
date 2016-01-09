@@ -1,0 +1,30 @@
+<link rel="import" href="../../../bower_components/polymer/polymer.html">
+
+
+<dom-module id="element-3">
+    <template>
+        <button on-click="handleClick">Kick Me</button>
+    </template>
+    <script>
+
+    Polymer({
+        is: 'element-3',
+        properties: {
+            test: {
+                type: String,
+                notify: true,
+                observer: 'testChanged'
+            }
+        },
+
+        testChanged: function(n, o) {
+            console.log('elsement 3: ', n, o);
+        },
+
+        handleClick: function(e, detail) {
+            this.test = this.test + ',';
+        },
+
+    });
+    </script>
+</dom-module>

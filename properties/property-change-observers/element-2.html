@@ -1,0 +1,29 @@
+<link rel="import" href="../../../bower_components/polymer/polymer.html">
+
+<link rel="import" href="element-1.html">
+<link rel="import" href="element-3.html">
+
+<dom-module id="element-2">
+    <template>
+        <element-1 id='element1' test="{{test}}"></element-1>
+        <element-3 id='element3' test="{{test}}"></element-3>
+    </template>
+    <script>
+
+    Polymer({
+        is: 'element-2',
+        properties: {
+            test: {
+                type: String,
+                observer: 'testChanged'
+            }
+        },
+
+        testChanged: function(n, o) {
+            console.log('elsement 2: ', n, o);
+        },
+
+
+    });
+    </script>
+</dom-module>

@@ -1,0 +1,46 @@
+<link rel="import" href="../../../bower_components/polymer/polymer.html">
+
+
+<dom-module id="element-3">
+    <template>
+        <button on-click="handleClick">Element3 Button</button>
+    </template>
+    <script>
+
+    Polymer({
+        is: 'element-3',
+        properties: {
+            test: {
+                type: Object,
+                notify: true,
+                value:  {},
+                observer: 'testChanged'
+            }
+        },
+
+        testChanged: function(n, o) {
+            console.log('elsement 3 test changed: ', n, o);
+        },
+
+        // To call an observer when any (deep) sub-property of an object changes, specify a path with a wildcard (*).
+        observers: [
+            'testDeepChanged(test.*)'
+        ],
+
+        testDeepChanged: function(changeRecord) {
+            console.log('element-3 testDeepChanged: ', changeRecord.path, changeRecord.value, changeRecord.base);
+        },
+
+        handleClick: function(e, detail) {
+            if (this.test.count !== undefined) {
+                count = this.test.count + 1;
+            } else {
+                count = 0;
+            }
+            this.set('test.count', count);
+            this.set('test.name', 'test.deep');
+        }
+
+    });
+    </script>
+</dom-module>

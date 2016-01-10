@@ -1,0 +1,44 @@
+<link rel="import" href="../../../bower_components/polymer/polymer.html">
+
+<dom-module id="element-3">
+    <template>
+        <!-- Can specify a path with a wildcard (*) to binding any (deep) sub-property of an object. -->
+        <div id='e3TestCount' count='{{getCount(test.*)}}'> Element3 count value: {{getCount(test.*)}} </div>
+        <div id='e3TestName' name='{{getName(test.*)}}'> Element3 name: {{getName(test.*)}} </div>
+        <button on-click="handleClick">Element3 Button</button>
+    </template>
+    <script>
+
+    Polymer({
+        is: 'element-3',
+        properties: {
+            test: {
+                type: Object,
+                notify: true,
+                value: {}
+            }
+        },
+
+        getCount: function(changeRecord) {
+            console.log('getCount: ', changeRecord.path, changeRecord.value, changeRecord.base);
+            return String(this.test.count);
+        },
+
+        getName: function(changeRecord) {
+            console.log('getName: ', changeRecord.path, changeRecord.value, changeRecord.base);
+            return this.test.name;
+        },
+
+        handleClick: function(e, detail) {
+            if (this.test.count === undefined) {
+                count = 0;
+            } else {
+                count = this.test.count + 1;
+            }
+            this.set('test.count', count);
+            this.set('test.name', 'name');
+        }
+
+    });
+    </script>
+</dom-module>

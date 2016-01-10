@@ -1,0 +1,51 @@
+<link rel="import" href="../../../bower_components/polymer/polymer.html">
+
+<link rel="import" href="element-1.html">
+
+
+<dom-module id="element-3">
+    <template>
+        <!-- 1. Using a Polymer property binding to another element. -->
+        <element-1 id='element1' count="{{test.count}}"></element-1>
+
+        <button on-click="handleClick">Element3 Button</button>
+        <div id='e3TestCount'> Element3 count value: {{test.count}} </div>
+    </template>
+    <script>
+
+    Polymer({
+        is: 'element-3',
+        properties: {
+            test: {
+                type: Object,
+                notify: true,
+                value: {count:0},
+                observer: 'testChanged'
+            }
+        },
+
+        testChanged: function(n, o) {
+            console.log('elsement 3 test changed: ', n, o);
+        },
+
+        observers: [
+            'testCountChanged(test.count)'
+        ],
+
+        testCountChanged: function(count) {
+            console.log('element-3 testCountChanged: ', count);
+        },
+
+        handleClick: function(e, detail) {
+            count = this.test.count + 1;
+
+            // 2. Using the set API, which provides the required notification to elements with registered interest.
+            this.set('test.count', count);
+
+            // belowing way will not trigger 'testCountChanged' observer and also not rerender 'e3TestCount' div
+            this.test.count++;
+        }
+
+    });
+    </script>
+</dom-module>

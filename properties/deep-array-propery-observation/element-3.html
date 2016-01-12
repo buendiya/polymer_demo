@@ -1,0 +1,71 @@
+<link rel="import" href="../../../bower_components/polymer/polymer.html">
+
+
+<dom-module id="element-3">
+    <template>
+        <button on-click="pushArray">Push Array</button>
+        <button on-click="spliceArray">Splic Array</button>
+        <button on-click="changeArrayInnerObject">change Array-inner-object</button>
+        <button on-click="pushArrayInnerObjectInnerArray">Push Array-inner-object-inner-array</button>
+        <button on-click="spliceArrayInnerObjectInnerArray">Splice Array-inner-object-inner-array</button>
+        <template is="dom-repeat" items="{{test}}" as="item">
+            <div></div>
+            <div>Outer Array: {{item}}</div>
+            <template is="dom-repeat" items="{{item.name}}" as="item2">
+                <div>Inner Array: {{item2}}</div>
+            </template>
+        </template>
+    </template>
+    <script>
+
+    Polymer({
+        is: 'element-3',
+        properties: {
+            test: {
+                type: Object,
+                notify: true,
+                value:  [],
+                observer: 'testChanged'
+            }
+        },
+
+        testChanged: function(n, o) {
+            console.log('elsement 3 test changed: ', n, o);
+        },
+
+        // To call an observer when any (deep) sub-property of an object changes, specify a path with a wildcard (*).
+        // observers: [
+        //     'testDeepChanged(test.*)'
+        // ],
+
+        // testDeepChanged: function(changeRecord) {
+        //     console.log('element-3 testDeepChanged: ', changeRecord.path, changeRecord.value, changeRecord.base);
+        // },
+
+        pushArray: function(e, detail) {
+            this.push('test', {});
+        },
+
+        spliceArray: function(e, detail) {
+            this.splice('test', 0, 1);
+        },
+
+        changeArrayInnerObject: function(e, detail) {
+            index = this.test.length - 1;
+            this.set('test.' + String(index) + '.name', []);
+            this.push('test.' + String(index) + '.name', 1);
+        },
+
+        pushArrayInnerObjectInnerArray: function(e, detail) {
+            index1 = this.test.length - 1;
+            value = this.test[index].name.length + 1;
+            this.push('test.' + String(index1) + '.name', value);
+        },
+
+        spliceArrayInnerObjectInnerArray: function(e, detail) {
+            index1 = this.test.length - 1;
+            this.splice('test.' + String(index1) + '.name', 0, 1);
+        }
+    });
+    </script>
+</dom-module>

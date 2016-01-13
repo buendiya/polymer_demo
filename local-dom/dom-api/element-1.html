@@ -1,0 +1,34 @@
+<link rel="import" href="../../../bower_components/polymer/polymer.html">
+
+<link rel="import" href="element-2.html">
+
+<dom-module id="element-1">
+    <template>
+        <div>element 1</div>
+        <element-2 id='element2'></element-2>
+
+        <button on-click='appendDivToThisRoot'>AppendDivToThisRoot</button>
+        <button on-click='appendDivToElement2'>AppendDivToElement2</button>
+    </template>
+
+    <script>
+    Polymer({
+
+        is: 'element-1',
+
+        appendDivToThisRoot: function() {
+            var divElement = document.createElement('div');
+            divElement.innerText = '<div>DIV</div>'
+            Polymer.dom(this.root).appendChild(divElement);
+        },
+
+        // insert light dom to element2
+        appendDivToElement2: function() {
+            var divElement = document.createElement('div');
+            divElement.innerText = '<div>DIV</div>'
+            Polymer.dom(this.$.element2).appendChild(divElement);
+        }
+
+    });
+    </script>
+</dom-module>

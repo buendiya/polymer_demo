@@ -4,17 +4,21 @@
 <dom-module id="element-2">
     <template>
         <style>
-        :host {
-            --my-toolbar-title-color: red;
-            --my-toolbar-theme: {
-                background-color: red;
-                border-radius: 4px;
-                border: 1px solid gray;
-            };
-        }
+            :host {
+                --my-toolbar-title-color: red;
+                --my-toolbar-theme: {
+                    background-color: red;
+                    border-radius: 4px;
+                    border: 1px solid gray;
+                };
+            }
+            #div {
+                width: var(--div-background-width);
+            }
         </style>
         <my-toolbar title='my toolbar'></my-toolbar>
         <my-toolbar-mixin title='my toolbar mixin'></my-toolbar-mixin>
+        <div id='div'>DIV</div>
         <button on-tap="changeTheme">Change theme</button>
     </template>
     <script>
@@ -22,6 +26,7 @@
         is: 'element-2',
         changeTheme: function() {
             this.customStyle['--my-toolbar-title-color'] = 'blue';
+            this.customStyle['--div-background-width'] = '100px';
             // can not using api to change mixin css
             // this.customStyle['--my-toolbar-theme'] = JSON.stringify({'background-color': 'blue'});
             this.updateStyles();
